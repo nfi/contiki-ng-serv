@@ -74,6 +74,7 @@ Also feel free to download our [cheat sheet](https://contiki-ng.github.io/resour
 * [simplelink: TI SimpleLink MCU Platform](/doc/platforms/simplelink.md)
 * [sky: Tmote Sky / TelosB](/doc/platforms/sky.md)
 * [zoul: Zolertia Zoul platforms: Firefly, RE-mote and Orion](/doc/platforms/zolertia/zoul.md)
+* [serv: SERV (The SErial RISC-V CPU) using Servant](/doc/platforms/serv.md)
 
 ## Tutorials
 
