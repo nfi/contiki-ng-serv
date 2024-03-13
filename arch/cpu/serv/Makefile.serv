@@ -1,0 +1,58 @@
+ZEPHYRSDK ?= $(HOME)/.local/opt/zephyr-sdk-0.16.5
+
+ifeq (,$(wildcard $(ZEPHYRSDK)/setup.sh))
+    $(warning ZEPHYRSDK ('$(ZEPHYRSDK)') does not exist or is empty.)
+    $(warning Please specify path to the Zephyr SDK)
+    $(error "")
+endif
+
+TOOLCHAIN_PREFIX := $(ZEPHYRSDK)/riscv64-zephyr-elf/bin/riscv64-zephyr-elf-
+CC := $(TOOLCHAIN_PREFIX)gcc
+OBJCOPY := $(TOOLCHAIN_PREFIX)objcopy
+READELF := $(TOOLCHAIN_PREFIX)readelf
+RANLIB := $(TOOLCHAIN_PREFIX)ranlib
+AR := $(TOOLCHAIN_PREFIX)ar
+AS := $(TOOLCHAIN_PREFIX)as
+#LD := $(TOOLCHAIN_PREFIX)ld
+LD := $(TOOLCHAIN_PREFIX)gcc
+SIZE := $(TOOLCHAIN_PREFIX)size
+
+LDSCRIPT = $(CONTIKI_CPU)/link.ld
+
+### CPU-dependent directories
+CONTIKI_CPU_DIRS = .
+
+### CPU-dependent source files
+CONTIKI_CPU_SOURCEFILES += start.S dbg.c clock.c watchdog.c
+# CONTIKI_CPU_SOURCEFILES += irq.c soc_irq.S vector.S
+
+CONTIKI_SOURCEFILES += $(CONTIKI_CPU_SOURCEFILES)
+
+MODULES += os/lib/dbg-io
+
+CFLAGS += -march=rv32i -mabi=ilp32 -Os
+# -nostdlib
+
+ASFLAGS += $(CFLAGS)
+ASFLAGS += -xassembler-with-cpp -c
+
+$(BUILD_DIR_BOARD)/%.hex: $(BUILD_DIR_BOARD)/%.$(TARGET)
+	$(TRACE_OBJCOPY)
+	python $(CONTIKI_CPU)/makehex.py $< >$@
+
+$(BUILD_DIR_BOARD)/%.bin: $(BUILD_DIR_BOARD)/%.$(TARGET)
+	$(TRACE_OBJCOPY)
+	$(Q)$(OBJCOPY) -O binary $(OBJCOPY_FLAGS) $< $@
+
+CUSTOM_RULE_S_TO_OBJECTDIR_O = 1
+
+$(OBJECTDIR)/%.o: %.S | $(OBJECTDIR)
+	$(TRACE_AS)
+	$(Q)$(CC) $(ASFLAGS) -o $@ $<
+$(OBJECTDIR)/%.o: %.s | $(OBJECTDIR)
+	$(TRACE_AS)
+	$(Q)$(CC) $(ASFLAGS) -o $@ $<
+
+LDFLAGS += $(CFLAGS) -nostartfiles -T$(LDSCRIPT)
+
+TARGET_STARTFILES += $(OBJECTDIR)/start.o
