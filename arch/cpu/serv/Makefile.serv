@@ -36,7 +36,7 @@ CFLAGS += -march=rv32i -mabi=ilp32 -Os
 ASFLAGS += $(CFLAGS)
 ASFLAGS += -xassembler-with-cpp -c
 
-$(BUILD_DIR_BOARD)/%.hex: $(BUILD_DIR_BOARD)/%.$(TARGET)
+$(BUILD_DIR_BOARD)/%.hex: $(BUILD_DIR_BOARD)/%.bin
 	$(TRACE_OBJCOPY)
 	python $(CONTIKI_CPU)/makehex.py $< >$@
 
