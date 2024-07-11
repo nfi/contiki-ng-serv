@@ -1,4 +1,4 @@
-ZEPHYRSDK ?= $(HOME)/.local/opt/zephyr-sdk-0.16.5
+ZEPHYRSDK ?= $(HOME)/.local/opt/zephyr-sdk-0.16.8
 
 ifeq (,$(wildcard $(ZEPHYRSDK)/setup.sh))
     $(warning ZEPHYRSDK ('$(ZEPHYRSDK)') does not exist or is empty.)

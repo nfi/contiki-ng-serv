@@ -133,8 +133,8 @@ pip install -r ~/zephyrproject/zephyr/scripts/requirements.txt
 
 ```shell
 cd /tmp
-wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.5/zephyr-sdk-0.16.5_linux-x86_64.tar.xz
-wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.5/sha256.sum | shasum --check --ignore-missing
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/zephyr-sdk-0.16.8_linux-x86_64.tar.xz
+wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/sha256.sum | shasum --check --ignore-missing
 ```
 
 2. Extract the Zephyr bundle archive in `~/.local/opt`.
@@ -142,19 +142,19 @@ wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.5
 ```shell
 mkdir ~/.local/opt
 cd ~/.local/opt
-tar xvf /tmp/zephyr-sdk-0.16.5_linux-x86_64.tar.xz
+tar xvf /tmp/zephyr-sdk-0.16.8_linux-x86_64.tar.xz
 ```
 
 3. Run the SDK bundle setup script
 ```shell
-cd ~/.local/opt/zephyr-sdk-0.16.5
+cd ~/.local/opt/zephyr-sdk-0.16.8
 ./setup.sh
 ```
 
 4. Install `udev` rules, which allow you to flash most Zephyr boards as a regular user.
 
 ```shell
-sudo cp -i ~/.local/opt/zephyr-sdk-0.16.5/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d
+sudo cp -i ~/.local/opt/zephyr-sdk-0.16.8/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d
 sudo udevadm control --reload
 ```
 
