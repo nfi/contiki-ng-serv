@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 /*---------------------------------------------------------------------------*/
-#define UART_BITBANG_BASE 0x40000000
 #define reg_uart_data (*(volatile uint32_t*)UART_BITBANG_BASE)
 /*---------------------------------------------------------------------------*/
 int

@@ -24,7 +24,6 @@ CONTIKI_CPU_DIRS = .
 
 ### CPU-dependent source files
 CONTIKI_CPU_SOURCEFILES += start.S dbg.c clock.c watchdog.c
-# CONTIKI_CPU_SOURCEFILES += irq.c soc_irq.S vector.S
 
 CONTIKI_SOURCEFILES += $(CONTIKI_CPU_SOURCEFILES)
 

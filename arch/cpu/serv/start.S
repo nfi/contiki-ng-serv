@@ -1,5 +1,4 @@
-#define GPIO_ADDR 0x40000000
-#define HALT_ADDR 0x90000000
+#include "serv-def.h"
 
 	/*
 	a0 = GPIO address
@@ -10,7 +9,7 @@
 .globl _start
 _start:
 	/* Load gpio address to a0 */
-	li	a0, GPIO_ADDR
+	li	a0, UART_BITBANG_BASE
 
 	/* Set GPIO high initially */
 	addi	t0, zero, 1
@@ -54,7 +53,7 @@ call_main:
 
 	/* begin */
 	/* Load gpio address to a0 */
-	li	a0, GPIO_ADDR
+	li	a0, UART_BITBANG_BASE
 
 	/* Set GPIO high initially */
 	addi	t0, zero, 1
