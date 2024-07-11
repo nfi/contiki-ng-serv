@@ -3,4 +3,6 @@
 
 #include "contiki.h"
 
+rtimer_clock_t rtimer_arch_now(void);
+
 #endif /* RTIMER_ARCH_H_ */
