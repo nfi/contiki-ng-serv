@@ -13,4 +13,11 @@
 
 #define RTIMER_ARCH_SECOND 32768
 
+/*
+ * Work around for issue with dividing 64 bit values.
+ * Configure dbg-io to use 32 bit values.
+*/
+#define LARGEST_SIGNED long int
+#define LARGEST_UNSIGNED unsigned long int
+
 #endif /* SERV_DEF_H */
