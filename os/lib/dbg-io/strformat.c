@@ -382,8 +382,8 @@ format_str_v(const strformat_context_t *ctxt, const char *format, va_list ap)
 #ifdef HAVE_LONGLONG
       } else if(sizeof(size_t) == sizeof(long long)) {
         flags |= SIZE_LONGLONG;
-      }
 #endif
+      }
       pos++;
     }
 
